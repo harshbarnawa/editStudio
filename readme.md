@@ -1,1 +1,36 @@
-In this Repo we are going to create a design website for a agency.
+# Edito Studios
+
+A cinematic portfolio website for Edito Studios built using React + Vite.
+
+## What Was Done
+
+- Converted original HTML/CSS/JavaScript website into React + Vite
+- Preserved original UI, animations, transitions, and layout
+- Maintained infinite marquee reel system
+- Preserved hover video unmute functionality
+- Preserved custom video lightbox system
+- Preserved lazy loading and scroll reveal animations
+- Converted website into reusable React structure without changing original design
+
+## Tech Stack
+
+- React
+- Vite
+- JavaScript
+- CSS3
+
+## Features
+
+- Cinematic UI/UX
+- Infinite scrolling video reel
+- Interactive lightbox video player
+- Responsive design
+- Smooth animations
+- Lazy-loaded videos
+- Mobile navigation menu
+
+## Run Locally
+
+```bash
+npm install
+npm run dev
