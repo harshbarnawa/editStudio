@@ -2,6 +2,23 @@ import { useEffect } from "react";
 import "./styles/global.css";
 
 function App() {
+  let audioUnlocked = false;
+
+const unlockAudio = () => {
+
+  audioUnlocked = true;
+
+  window.removeEventListener(
+    'pointerdown',
+    unlockAudio
+  );
+
+};
+
+window.addEventListener(
+  'pointerdown',
+  unlockAudio
+);
 
   useEffect(() => {
 
@@ -62,8 +79,30 @@ const videoLazyObs = new IntersectionObserver((entries) => {
     const vid = card.querySelector('video[data-src]');
     if (vid && !vid.getAttribute('src')) {
       vid.src = vid.dataset.src;
-      vid.load();
-      vid.play().then(() => card.classList.add('vid-ready')).catch(() => {});
+
+vid.muted = true;
+
+vid.playsInline = true;
+
+vid.autoplay = true;
+
+vid.loop = true;
+
+const playPromise = vid.play();
+
+if(playPromise !== undefined){
+
+  playPromise
+    .then(() => {
+
+      card.classList.add('vid-ready');
+
+    })
+    .catch(() => {});
+
+}
+
+videoLazyObs.unobserve(card);
       videoLazyObs.unobserve(card);
     }
   });
@@ -71,53 +110,58 @@ const videoLazyObs = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reel-card').forEach(c => videoLazyObs.observe(c));
 
-/* HOVER: unmute hovered card video */
-/* HOVER: ONLY UNMUTE — NEVER PAUSE VIDEO */
-const reelStage = document.getElementById('reelStage');
+/* HOVER AUDIO */
+const cards =
+document.querySelectorAll('.reel-card');
 
-if (reelStage && !('ontouchstart' in window)) {
+cards.forEach(card => {
 
-  let lastVideo = null;
+  const vid =
+  card.querySelector('video');
 
-  reelStage.addEventListener('mouseover', e => {
+  if(!vid) return;
 
-    const card =
-      e.target.closest('.reel-card');
+  card.addEventListener('mouseenter', () => {
 
-    if (!card) return;
-
-    const vid =
-      card.querySelector('video');
-
-    if (!vid || !vid.src) return;
-
-    if (lastVideo && lastVideo !== vid) {
-      lastVideo.muted = true;
-    }
+  if(audioUnlocked){
 
     vid.muted = false;
 
-    lastVideo = vid;
+    if(vid.paused){
 
-  });
+      const p = vid.play();
 
-  reelStage.addEventListener('mouseout', e => {
+      if(p !== undefined){
 
-    const card =
-      e.target.closest('.reel-card');
+        p.catch(()=>{});
 
-    if (!card) return;
+      }
 
-    const vid =
-      card.querySelector('video');
+    }
 
-    if (!vid || !vid.src) return;
+  }
 
-    vid.muted = true;
+});
 
-  });
+ card.addEventListener('mouseleave', () => {
 
-}
+  vid.muted = true;
+
+  if(vid.paused){
+
+    const p = vid.play();
+
+    if(p !== undefined){
+
+      p.catch(()=>{});
+
+    }
+
+  }
+
+});
+
+});
 
 /* VIDEO LIGHTBOX */
 (function() {
