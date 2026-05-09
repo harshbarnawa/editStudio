@@ -7,9 +7,16 @@ function App() {
 
     
 /* LOADER */
-window.addEventListener('load', () => {
-  setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 1500);
-});
+setTimeout(() => {
+
+  const loader =
+  document.getElementById('loader');
+
+  if(loader){
+    loader.classList.add('hidden');
+  }
+
+},1500);
 
 /* SCROLL REVEAL */
 const revealObs = new IntersectionObserver(entries => {
