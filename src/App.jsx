@@ -72,24 +72,51 @@ const videoLazyObs = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reel-card').forEach(c => videoLazyObs.observe(c));
 
 /* HOVER: unmute hovered card video */
+/* HOVER: ONLY UNMUTE — NEVER PAUSE VIDEO */
 const reelStage = document.getElementById('reelStage');
+
 if (reelStage && !('ontouchstart' in window)) {
-  let lastCard = null;
+
+  let lastVideo = null;
+
   reelStage.addEventListener('mouseover', e => {
-    const card = e.target.closest('.reel-card');
-    if (!card || card === lastCard) return;
-    lastCard = card;
-    document.querySelectorAll('.reel-card video').forEach(v => { if (v.src) v.muted = true; });
-    const vid = card.querySelector('video');
-    if (vid && vid.src) { vid.muted = false; vid.play().catch(() => {}); }
-  });
-  reelStage.addEventListener('mouseout', e => {
-    const card = e.target.closest('.reel-card');
+
+    const card =
+      e.target.closest('.reel-card');
+
     if (!card) return;
-    if (card === lastCard) lastCard = null;
-    const vid = card.querySelector('video');
-    if (vid && vid.src) vid.muted = true;
+
+    const vid =
+      card.querySelector('video');
+
+    if (!vid || !vid.src) return;
+
+    if (lastVideo && lastVideo !== vid) {
+      lastVideo.muted = true;
+    }
+
+    vid.muted = false;
+
+    lastVideo = vid;
+
   });
+
+  reelStage.addEventListener('mouseout', e => {
+
+    const card =
+      e.target.closest('.reel-card');
+
+    if (!card) return;
+
+    const vid =
+      card.querySelector('video');
+
+    if (!vid || !vid.src) return;
+
+    vid.muted = true;
+
+  });
+
 }
 
 /* VIDEO LIGHTBOX */
