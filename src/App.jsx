@@ -354,7 +354,7 @@ cards.forEach(card => {
       <h3>Your Rights</h3>
       <p>You have the right to access, correct, or delete any personal information we hold about you. To exercise these rights, contact us at editostudios.in@gmail.com.</p>
       <h3>Contact</h3>
-      <p>For privacy-related questions, reach us at editostudios.in@gmail.com or via WhatsApp at +91 98173 55071.</p>
+      <p>For privacy-related questions, reach us at editostudios.in@gmail.com or via WhatsApp at +91 62642 32915.</p>
     </div>
   </div>
 </div>
@@ -573,7 +573,7 @@ cards.forEach(card => {
         <div className="contact-meta-stacked">
           <div className="contact-meta-item">
             <p className="meta-label">WhatsApp</p>
-            <p className="meta-value"><a href="https://wa.me/916264232915">+91 98173 55071</a></p>
+            <p className="meta-value"><a href="https://wa.me/916264232915">+91 62642 32915</a></p>
           </div>
           <div className="contact-meta-item">
             <p className="meta-label">Instagram</p>
