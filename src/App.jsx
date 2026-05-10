@@ -66,7 +66,7 @@ window.handleSubmit = function handleSubmit(e) {
   const service = document.getElementById('cf-service').value;
   const message = document.getElementById('cf-message').value;
   const text = `Hi Edito Studios! 👋\n\n*Name:* ${name}\n*Email:* ${email}\n*Service:* ${service}\n*Message:* ${message}`;
-  window.open(`https://wa.me/919817355071?text=${encodeURIComponent(text)}`, '_blank');
+  window.open(`https://wa.me/916264232915?text=${encodeURIComponent(text)}`, '_blank');
   document.getElementById('contact-form').style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
 }
@@ -573,7 +573,7 @@ cards.forEach(card => {
         <div className="contact-meta-stacked">
           <div className="contact-meta-item">
             <p className="meta-label">WhatsApp</p>
-            <p className="meta-value"><a href="https://wa.me/919817355071">+91 98173 55071</a></p>
+            <p className="meta-value"><a href="https://wa.me/916264232915">+91 98173 55071</a></p>
           </div>
           <div className="contact-meta-item">
             <p className="meta-label">Instagram</p>
@@ -647,7 +647,7 @@ cards.forEach(card => {
   target="_blank"
   rel="noreferrer"
 >Instagram</a>
-      <a href="https://wa.me/919817355071">WhatsApp</a>
+      <a href="https://wa.me/916264232915">WhatsApp</a>
     </div>
   </div>
   <div className="footer-bottom">
